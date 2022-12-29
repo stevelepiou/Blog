@@ -1,47 +1,148 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}Article index
+{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
+	{# <h1>Article index</h1> #}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Texte</th>
-                <th>CreatedAt</th>
-                <th>Categorie</th>
-                <th>Auteur</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.name }}</td>
-                <td>{{ article.description }}</td>
-                <td>{{ article.texte }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.categorie }}</td>
-                <td>{{ article.auteur }}</td>
-                <td>{{ article.image }}</td>
-                <td>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	{# <table class="table">
+		        <thead>
+		            <tr>
+		                <th>Id</th>
+		                <th>Name</th>
+		                <th>Description</th>
+		                <th>Texte</th>
+		                <th>CreatedAt</th>
+		                <th>Categorie</th>
+		                <th>Auteur</th>
+		                <th>Image</th>
+		                <th>actions</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		        {% for article in articles %}
+		            <tr>
+		                <td>{{ article.id }}</td>
+		                <td>{{ article.name }}</td>
+		                <td>{{ article.description }}</td>
+		                <td>{{ article.texte }}</td>
+		                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+		                <td>{{ article.categorie }}</td>
+		                <td>{{ article.auteur }}</td>
+		                <td>{{ article.image }}</td>
+		                <td>
+		                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+		                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+		                </td>
+		            </tr>
+		        {% else %}
+		            <tr>
+		                <td colspan="9">no records found</td>
+		            </tr>
+		        {% endfor %}
+		        </tbody>
+		    </table> #}
 
-    <a href="{{ path('app_article_new') }}">Create new</a>
+		<div class="block-complet"> <div class="block_blog">
+			<div class="titre_blog">
+				<h2>Blog</h2>
+			</div>
+			<div class="hr_blog">
+				<hr>
+			</div>
+			<div class="articles_blog">
+				{% for article in articles %}
+					<div class="block_article_blog">
+						<div class="block_gauche_blog">
+							<div class="titre_article_blog">
+								<h3>{{ article.name }}</h3>
+								<p>par
+									{{ article.auteur }}</p>
+							</div>
+							<div class="hr_article_blog">
+								<hr>
+							</div>
+							<div class="info_article_blog">
+								<p class='date_publication'>Edité le
+									{{ article.createdAt ? article.createdAt|date('d-m-Y') : '' }}</p>
+								<p class="categorie_article">Catégorie :
+									{{ article.categorie }}</p>
+							</div>
+							<div class="titre_description">
+								<h3>Description</h3>
+							</div>
+							<div class="texte_description">
+								<p>{{ article.description }}</p>
+							</div>
+						</div>
+							{% if app.user  %}
+						<div class="block_droit_blog">
+							<a href="{{ path('app_article_show', {'id': article.id}) }}" class='bouton_voir_blog'>Voir la publication</a>
+								
+							<a href="{{ path('app_article_edit', {'id': article.id}) }}" class="bouton_modifier_blog">Modifier</a>
+						</div>
+							{% else %}
+						<div class="block_droit_blog">
+							<a href="{{ path('app_article_show', {'id': article.id}) }}" class='bouton_voir_blog'>Voir la publication</a>
+						</div>
+							{% endif %}
+					</div>
+
+
+				{% else %}
+					<tr>
+						<td colspan="9">no records found</td>
+					</tr>
+				{% endfor %}
+		{# <div class="block-complet"> <div class="block_blog">
+			<div class="titre_blog">
+				<h2>Blog</h2>
+			</div>
+			<div class="hr_blog">
+				<hr>
+			</div>
+			<div class="articles_blog">
+				{% for article in articles %}
+					<div class="block_article_blog">
+						<div class="block_gauche_blog">
+							<div class="titre_article_blog">
+								<h3>{{ article.name }}</h3>
+								<p>par
+									{{ article.auteur }}</p>
+							</div>
+							<div class="hr_article_blog">
+								<hr>
+							</div>
+							<div class="info_article_blog">
+								<p class='date_publication'>Edité le
+									{{ article.createdAt ? article.createdAt|date('d-m-Y') : '' }}</p>
+								<p class="categorie_article">Catégorie :
+									{{ article.categorie }}</p>
+							</div>
+							<div class="titre_description">
+								<h3>Description</h3>
+							</div>
+							<div class="texte_description">
+								<p>{{ article.description }}</p>
+							</div>
+						</div>
+						<div class="block_droit_blog">
+							<a href="{{ path('app_article_show', {'id': article.id}) }}" class='bouton_voir_blog'>Voir la publication</a>
+							<a href="{{ path('app_article_edit', {'id': article.id}) }}" class="bouton_modifier_blog">Modifier</a>
+						</div>
+					</div>
+
+
+				{% else %}
+					<tr>
+						<td colspan="9">no records found</td>
+					</tr>
+				{% endfor %} #}
+
+			</div>
+		</div>
+	</div>
+
+	<a href="{{ path('app_article_new') }}">Create new</a>
 {% endblock %}

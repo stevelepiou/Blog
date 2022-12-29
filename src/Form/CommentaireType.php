@@ -2,29 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Article;
+use App\Entity\Commentaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ArticleType extends AbstractType
+class CommentaireType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('texte')
-            // ->add('categorie')
-            // ->add('auteur')
-            // ->add('image')
+            ->add('titreCommentaire')
+            ->add('textCommentaire')
+            ->add('note')
+            ->add('createdAt')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Article::class,
+            'data_class' => Commentaire::class,
         ]);
     }
 }

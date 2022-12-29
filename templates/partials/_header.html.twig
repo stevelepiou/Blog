@@ -1,3 +1,5 @@
+
+
 <nav>
 	<div class="image_nav">
 		<img src="{{asset('image/Blog-logo-couleur.png')}}" alt="">
@@ -5,25 +7,36 @@
 	<div class="liste">
 		<ul class='liste_gauche'>
 			<li>
-				<a href="">Accueil</a>
+				<a href="{{ path('home.index') }}">Accueil</a>
 			</li>
 			<li>
-				<a href="">Blog</a>
+				<a href="{{ path('article_index') }}">Blog</a>
 			</li>
-			<li>
-				<a href="">Catégories</a>
-			</li>
+			{# <li>
+				<a href="{{ path('app_category_index') }}">Catégories</a>
+			</li> #}
 		</ul>
 		<ul class='liste_droite'>
-			<li>
-				<a href="">Inscription</a>
+			{% if app.user %}
+			<li class='liste_connected'>
+				<a href="{{ path('app_user') }}"><img src="{{asset('image/icone-profil.png')}}" alt=""></a>
+				<p>{{ app.user.Name }}</p>
 			</li>
 			<li>
-				<a href="">Connexion</a>
+				<a href="{{ path('app_logout') }}">Se déconnecter</a>
+			</li>
+			
+			
+			{% else %}
+			<li>
+				<a href="{{ path('app_register') }}">Inscription</a>
 			</li>
 			<li>
-				<a href="">Profil</a>
+				<a href="{{ path('app_login') }}">Connexion</a>
 			</li>
+			{% endif %}
+			
+			
 		</ul>
 	</div>
 </nav>

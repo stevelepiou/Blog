@@ -20,7 +20,9 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('Name',
             TextType::class,
-            ['attr' => ['label' => 'Pseudo']])
+            ['attr' => ['label' => 'Pseudo']],
+            ['empty_data' => 'prout']
+            )
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

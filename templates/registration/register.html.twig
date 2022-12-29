@@ -5,64 +5,54 @@
 
 
 {% block body %}
-	{# {% for flash_error in app.flashes('verify_email_error') %}
+	{% for flash_error in app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-	{% endfor %} #}
-
-
-	{# {{ form_start(registrationForm) }}
-							        {{ form_row(registrationForm.Name, {
-						                label : 'Pseudo'
-						            }) }}
-							        {{ form_row(registrationForm.email,{
-						                label : 'Email'
-						            }) }}
-							        {{ form_row(registrationForm.plainPassword, {
-							            label: 'Mot de passe'
-							        }) }}
-							        {{ form_row(registrationForm.agreeTerms, {
-						                label : 'Accepeter les termes'
-						            }) }}
-							
-							        <button type="submit" class="btn">Register</button>
-							    {{ form_end(registrationForm) }} #}
+	{% endfor %}
 
 
 	<div class="block-complet">
+		{{ form_start(registrationForm,{'attr':{'class':'form_block_register'}}) }}
 		<div class="form_register">
-			<h2>INSCRIPTION</h2>
-			<hr>
-			{{ form_start(registrationForm) }}
-			<div class="pseudo_register">
-				{{ form_label(registrationForm.Name,'Pseudo',{'attr':{'class':'label_register'}}) }}
-				{{ form_errors(registrationForm.Name,{'attr':{'class':'errors_register'}}) }}
-				{{ form_widget(registrationForm.Name,{'attr':{'class':'input_register'}}) }}
-				{{ form_help(registrationForm.Name) }}
+			<div class="titre_register">
+				<h2>INSCRIPTION</h2>
 			</div>
-			<div class="email_register">
-				{{ form_label(registrationForm.email,'Email',{'attr':{'class':'label_register'}}) }}
-				{{ form_errors(registrationForm.email,{'attr':{'class':'errors_register'}}) }}
-				{{ form_widget(registrationForm.email,{'attr':{'class':'input_register'}}) }}
-				{{ form_help(registrationForm.email) }}
+			<div class="hr_register">
+				<hr>
 			</div>
-			<div class="mdp_register">
-				{{ form_label(registrationForm.plainPassword,'Mot de passe',{'attr':{'class':'label_register'}}) }}
-				{{ form_errors(registrationForm.plainPassword,{'attr':{'class':'errors_register'}}) }}
-				{{ form_widget(registrationForm.plainPassword,{'attr':{'class':'input_register'}}) }}
-				{{ form_help(registrationForm.plainPassword) }}
+			<div class="inputs_register">
+				<div class="pseudo_register">
+					{{ form_label(registrationForm.Name,'Pseudo',{'attr':{'class':'label_register'}}) }}
+					{{ form_errors(registrationForm.Name,{'attr':{'class':'errors_register'}}) }}
+					{{ form_widget(registrationForm.Name,{'attr':{'class':'input_register'}}) }}
+					{{ form_help(registrationForm.Name) }}
+				</div>
+				<div class="email_register">
+					{{ form_label(registrationForm.email,'Email',{'attr':{'class':'label_register'}}) }}
+					{{ form_errors(registrationForm.email,{'attr':{'class':'errors_register'}}) }}
+					{{ form_widget(registrationForm.email,{'attr':{'class':'input_register'}}) }}
+					{{ form_help(registrationForm.email) }}
+				</div>
+				<div class="mdp_register">
+					{{ form_label(registrationForm.plainPassword,'Mot de passe',{'attr':{'class':'label_register'}}) }}
+					{{ form_errors(registrationForm.plainPassword,{'attr':{'class':'errors_register'}}) }}
+					{{ form_widget(registrationForm.plainPassword,{'attr':{'class':'input_register'}}) }}
+					{{ form_help(registrationForm.plainPassword) }}
+				</div>
 			</div>
-			<div class="accept_register">
-				{{ form_widget(registrationForm.agreeTerms,{'attr':{'class':'input_agree'}}) }}
-				{{ form_label(registrationForm.agreeTerms,'Accepter les termes',{'attr':{'class':'agree_register'}}) }}
-				{{ form_errors(registrationForm.agreeTerms) }}
-				{{ form_help(registrationForm.agreeTerms) }}
+			<div class="accept_btn_register">
+				<div class="accept_register">
+					{{ form_widget(registrationForm.agreeTerms,{'attr':{'class':'input_agree'}}) }}
+					{{ form_label(registrationForm.agreeTerms,'Accepter les termes',{'attr':{'class':'agree_register'}}) }}
+					{{ form_errors(registrationForm.agreeTerms) }}
+					{{ form_help(registrationForm.agreeTerms) }}
+				</div>
 			</div>
-			<div class="btn_register">
-				<button type="submit" class="btn">Register</button>
-			</div>
-			{{ form_end(registrationForm) }}
 		</div>
+				<div class="bouton_register">
+					<button type="submit" class="btn_register">S'inscrire</button>
+				</div>
+		{{ form_end(registrationForm) }}
 	</div>
 
-	
+
 {% endblock %}

@@ -5,6 +5,21 @@
 {% endblock %}
 
 {% block body %}
-    <h1>salut</h1>
+    <div class="block-complet">
+        <div class="centre_accueil">
+            <h1>Bienvenue sur Piou's Blog !</h1>
+            <p class="txt_titre_accueil">Le blog où chacun peut poster ses aventures avec nos<br>amis volatiles</p>
+            <div class="hr_accueil">
+                <hr>
+            </div>
+            <div class="start_accueil">
+                <p>Pour commencer à Poster,
+                    <br>Veuillez vous connecter ou vous inscrire à notre site:</p>
+
+                <a href=" {{ path('app_register') }} ">C'EST GRATUIT !</a>
+            </div>
+        
+        </div>
+    </div>
 {% endblock %}
 
