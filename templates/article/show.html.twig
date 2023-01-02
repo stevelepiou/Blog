@@ -28,7 +28,21 @@
             </div>
         </div>
     </div>
+    <div class="block_commentaires_btn_article">
+        {% if app.user %}
+            <div class="commentaire_btn_article">
+                <a href="{{path('app_commentaire_show', { 'id' : article.id})}}">Commentaires</a>
+                <a href="{{path('app_commentaire_new', {'id': article.id})}}" class='btn_commentaire'> Ajouter un commentaire </a>
+                {# <button class="btn_commentaire">Ajouter un commentaire</button>  #}
+            </div>
+        {% else %}
+            <div class="commentaire_btn_article">
+                <a href="">Commentaires</a>
+            </div>
+
+        {% endif %}
     </div>
+</div>
     
 
     {# <table class="table">

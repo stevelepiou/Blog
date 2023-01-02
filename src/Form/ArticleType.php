@@ -15,9 +15,9 @@ class ArticleType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('texte')
-            // ->add('categorie')
+            ->add('categorie')
             // ->add('auteur')
-            // ->add('image')
+            ->add('image')
         ;
     }
 

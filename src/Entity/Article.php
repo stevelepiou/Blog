@@ -42,7 +42,7 @@ class Article
     #[ORM\Column(length: 50)]
     private ?string $categorie = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $auteur = null;
 
     #[ORM\Column(length: 1000, nullable: true)]

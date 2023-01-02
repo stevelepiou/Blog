@@ -15,7 +15,7 @@ class CommentaireType extends AbstractType
             ->add('titreCommentaire')
             ->add('textCommentaire')
             ->add('note')
-            ->add('createdAt')
+            // ->add('createdAt')
         ;
     }
 

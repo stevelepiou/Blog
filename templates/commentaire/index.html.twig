@@ -14,12 +14,14 @@
                 <th>Note</th>
                 <th>CreatedAt</th>
                 <th>actions</th>
+                <th>auteur</th>
             </tr>
         </thead>
         <tbody>
         {% for commentaire in commentaires %}
             <tr>
                 <td>{{ commentaire.id }}</td>
+                {# <td>{{ commentaire.user_id }}</td> #}
                 <td>{{ commentaire.titreCommentaire }}</td>
                 <td>{{ commentaire.textCommentaire }}</td>
                 <td>{{ commentaire.note }}</td>
