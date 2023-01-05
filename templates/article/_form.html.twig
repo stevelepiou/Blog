@@ -17,7 +17,7 @@
                             <option value="">--Choisissez une catégorie--</option>
                             <option value="">Dog</option>
                         </select> #}
-                        {{ form_widget(form.categorie,{'attr':{'class':'input_modif_categorie_article'}}) }}
+                        {{ form_widget(form.category,{'attr':{'class':'input_modif_choix_categorie'}}) }}
                     </div>
                 </div>
             </div>
@@ -43,6 +43,7 @@
                 <h3>Vous pouvez illustrer votre publication</h3>
                 <hr>
                 {{ form_widget(form.image,{'attr':{'class':'input_modif_image_article'}}) }}
+                
                 
                 {# {{ form_widget(form.name,,{'attr':{'class':'input_modif_image_article'}}) }} #}
             </div>

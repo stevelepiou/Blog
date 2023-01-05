@@ -914,6 +914,19 @@ footer{
     font-family: 'Urbanist', sans-serif;
 }
 
+.input_modif_choix_categorie{
+    background-color: #f4a2a2;
+    border: solid black 1px;
+    margin-top: 2px;
+    margin-left: 30%;
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    color: white;
+    text-align: justify;
+    flex-wrap: wrap;
+}
+
 .titre_article_modif{
     display: flex;
     justify-content: space-between;

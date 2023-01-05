@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
+use App\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Repository\ArticleRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -37,16 +40,20 @@ class Article
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->category = new ArrayCollection();
     }
-
-    #[ORM\Column(length: 50)]
-    private ?string $categorie = null;
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $auteur = null;
 
     #[ORM\Column(length: 1000, nullable: true)]
     private ?string $image = null;
+
+    #[ORM\ManyToOne(targetEntity:User::class, inversedBy: 'articles')]
+    private $user;
+
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
+    private Collection $category;
 
     public function getId(): ?int
     {
@@ -101,18 +108,6 @@ class Article
         return $this;
     }
 
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(string $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
-
     public function getAuteur(): ?string
     {
         return $this->auteur;
@@ -136,4 +131,42 @@ class Article
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->category->removeElement($category);
+
+        return $this;
+    }
+
+
 }

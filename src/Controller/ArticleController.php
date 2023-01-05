@@ -2,13 +2,20 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Article;
 use App\Form\ArticleType;
+
 use App\Repository\ArticleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/article')]
 class ArticleController extends AbstractController
@@ -21,15 +28,33 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    /**
+     * This controller display how to create an article
+     *
+     * @param Request $request
+     * @param ArticleRepository $articleRepository
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ArticleRepository $articleRepository): Response
+    #[IsGranted('ROLE_USER')]
+    public function new(Request $request, ArticleRepository $articleRepository,
+     EntityManagerInterface $manager): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $article = $form->getData();
+
+            $article->setUser($this->getUser());
+            
             $articleRepository->save($article, true);
+
+            // $manager->persist($article);
+            // $manager->flush();
 
             return $this->redirectToRoute('article_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -49,6 +74,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
+    #[Security("is_granted('ROLE_USER') and user === article.getUser()")]
     public function edit(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
         $form = $this->createForm(ArticleType::class, $article);

@@ -20,7 +20,7 @@
 						<div class="block_gauche_blog">
 							<div class="titre_article_blog">
 								<h3>{{ article.name }}</h3>
-								<p>par
+								<p>par {{article.user.name}}
 									{{ article.auteur }}</p>
 							</div>
 							<div class="hr_article_blog">
@@ -29,8 +29,8 @@
 							<div class="info_article_blog">
 								<p class='date_publication'>Edité le
 									{{ article.createdAt ? article.createdAt|date('d-m-Y') : '' }}</p>
-								<p class="categorie_article">Catégorie :
-									{{ article.categorie }}</p>
+								{# <p class="categorie_article">Catégorie : #}
+									{# {{ article.category.categorie }}</p> #}
 							</div>
 							<div class="titre_description">
 								<h3>Description</h3>
@@ -39,7 +39,7 @@
 								<p>{{ article.description }}</p>
 							</div>
 						</div>
-						{% if app.user  %}
+						{% if app.user and app.user == article.user %}
 							<div class="block_droit_blog">
 								<a href="{{ path('app_article_show', {'id': article.id}) }}" class='bouton_voir_blog'>Voir la publication</a>
 
